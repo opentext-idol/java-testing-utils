@@ -1,3 +1,8 @@
+/*
+ * Copyright 2013-2015 Hewlett-Packard Development Company, L.P.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License.
+ */
+
 package com.autonomy.frontend.testing.matchers;
 
 import java.util.ArrayList;
@@ -11,13 +16,6 @@ import org.mockito.ArgumentMatcher;
 
 import static org.hamcrest.core.AllOf.allOf;
 
-/*
- * $Id:$
- *
- * Copyright (c) 2015, Autonomy Systems Ltd.
- *
- * Last modified by $Author:$ on $Date:$
- */
 public class SetContainingItems<T> extends ArgumentMatcher<Set<? super T>> {
 
     private final Set<? super T> set = new HashSet<>();
