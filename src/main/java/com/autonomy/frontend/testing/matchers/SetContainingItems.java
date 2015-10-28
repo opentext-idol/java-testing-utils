@@ -5,14 +5,15 @@
 
 package com.autonomy.frontend.testing.matchers;
 
+import org.hamcrest.Factory;
+import org.hamcrest.Matcher;
+import org.mockito.ArgumentMatcher;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.hamcrest.Factory;
-import org.hamcrest.Matcher;
-import org.mockito.ArgumentMatcher;
 
 import static org.hamcrest.core.AllOf.allOf;
 

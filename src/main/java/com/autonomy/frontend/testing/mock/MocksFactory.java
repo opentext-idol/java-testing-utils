@@ -6,6 +6,7 @@
 package com.autonomy.frontend.testing.mock;
 
 import org.springframework.beans.factory.FactoryBean;
+
 import static org.mockito.Mockito.mock;
 
 /**
