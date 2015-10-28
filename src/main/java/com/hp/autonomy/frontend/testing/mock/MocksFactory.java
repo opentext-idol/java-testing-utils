@@ -3,7 +3,7 @@
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License.
  */
 
-package com.autonomy.frontend.testing.mock;
+package com.hp.autonomy.frontend.testing.mock;
 
 import org.springframework.beans.factory.FactoryBean;
 
