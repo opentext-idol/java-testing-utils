@@ -44,6 +44,6 @@ public class MocksFactory implements FactoryBean<Object> {
 
     @Override
     public boolean isSingleton() {
-        return true;
+        return false;
     }
 }
