@@ -10,16 +10,25 @@ import com.autonomy.aci.client.util.AciParameters;
 import org.mockito.ArgumentMatcher;
 
 /**
- * Checks that two {@link AciParameters} contain the same keys and values.
+ * Mockito matcher that checks that two {@link AciParameters} contain the same keys and values.
  */
 public class MatchesAciParameters extends ArgumentMatcher<AciParameters> {
     private final boolean onlyContains;
     private final AciParameters parameters;
 
+    /**
+     * Creates a new MatchesAciParameters that matches the given parameters
+     * @param parameters The parameters to match
+     */
     public MatchesAciParameters(final AciParameters parameters) {
         this(parameters, true);
     }
 
+    /**
+     * Creates a new MatchesAciParameters that matches the given parameters
+     * @param parameters The parameters to match
+     * @param onlyContains true if the parameters must contain only the given parameters; false otherwise
+     */
     public MatchesAciParameters(final AciParameters parameters, final boolean onlyContains) {
         this.parameters = parameters;
         this.onlyContains = onlyContains;
@@ -55,10 +64,20 @@ public class MatchesAciParameters extends ArgumentMatcher<AciParameters> {
         return true;
     }
 
+    /**
+     * Static factory for creating a MatchesAciParameters that exactly matches the given parameters
+     * @param aciParameters The parameters to match
+     * @return A MatchesAciParameters that will match objects that equal the given parameters
+     */
     public static MatchesAciParameters equalsAciParameters(final AciParameters aciParameters) {
         return new MatchesAciParameters(aciParameters);
     }
 
+    /**
+     * Static factory for creating a MatchesAciParameters that matches the given parameters
+     * @param aciParameters The parameters to match
+     * @return A MatchesAciParameters that will match objects that contain the given parameters
+     */
     public static MatchesAciParameters containsAciParameters(final AciParameters aciParameters) {
         return new MatchesAciParameters(aciParameters, false);
     }
