@@ -12,7 +12,7 @@ import static org.mockito.Mockito.mock;
 /**
  * {@link FactoryBean} for creating Mockito mock objects. This is useful if you're using a test application context
  * written in XML.
- *
+ * <p/>
  * If your test context uses Java configuration, there is no need to use this method.
  */
 public class MocksFactory implements FactoryBean<Object> {

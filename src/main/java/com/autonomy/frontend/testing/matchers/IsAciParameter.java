@@ -41,7 +41,7 @@ public class IsAciParameter extends ArgumentMatcher<AciParameter> {
 
     @Override
     public boolean matches(final Object argument) {
-        if(!(argument instanceof AciParameter)) {
+        if (!(argument instanceof AciParameter)) {
             return false;
         }
 
