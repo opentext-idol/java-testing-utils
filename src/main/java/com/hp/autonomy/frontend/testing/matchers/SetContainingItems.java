@@ -19,7 +19,7 @@ import static org.hamcrest.core.AllOf.allOf;
 
 /**
  * Mockito matcher that matches a given item if it is a set containing the given items.
- * <p/>
+ *
  * This differs from {@link org.hamcrest.core.IsCollectionContaining} in that it explicitly returns a {@link Set}, which
  * cam help with compilation errors.
  * @param <T> The parameterized type of the set
