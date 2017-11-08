@@ -51,9 +51,6 @@
             <organization>Hewlett-Packard Enterprise</organization>
             <organizationUrl>http://www.hpe.com</organizationUrl>
         </developer>
-        <developer>
-            <name>Luca Mandrioli</name>
-        </developer>
     </developers>
 
     <scm>
