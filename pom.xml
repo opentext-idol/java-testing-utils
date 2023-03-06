@@ -14,13 +14,13 @@
     <artifactId>testing-utils</artifactId>
     <version>1.2.0-SNAPSHOT</version>
 
-    <name>Micro Focus IDOL Java Testing Utils</name>
+    <name>OpenText IDOL Java Testing Utils</name>
     <description>Hamcrest matchers and Mockito Spring factory</description>
     <url>https://github.com/microfocus-idol/java-testing-utils</url>
 
     <organization>
-        <name>Micro Focus International plc.</name>
-        <url>http://www.microfocus.com/</url>
+        <name>OpenText</name>
+        <url>https://www.opentext.com/</url>
     </organization>
 
     <inceptionYear>2013</inceptionYear>
