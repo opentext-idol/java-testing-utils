@@ -16,7 +16,7 @@
 
     <name>OpenText IDOL Java Testing Utils</name>
     <description>Hamcrest matchers and Mockito Spring factory</description>
-    <url>https://github.com/microfocus-idol/java-testing-utils</url>
+    <url>https://github.com/opentext-idol/java-testing-utils</url>
 
     <organization>
         <name>OpenText</name>
@@ -45,14 +45,14 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:microfocus-idol/java-testing-utils.git</connection>
-        <developerConnection>scm:git:git@github.com:microfocus-idol/java-testing-utils.git</developerConnection>
-        <url>git@github.com:microfocus-idol/java-testing-utils.git</url>
+        <connection>scm:git:git@github.com:opentext-idol/java-testing-utils.git</connection>
+        <developerConnection>scm:git:git@github.com:opentext-idol/java-testing-utils.git</developerConnection>
+        <url>git@github.com:opentext-idol/java-testing-utils.git</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/microfocus-idol/java-testing-utils/issues</url>
+        <url>https://github.com/opentext-idol/java-testing-utils/issues</url>
     </issueManagement>
 
     <dependencies>
