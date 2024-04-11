@@ -14,22 +14,22 @@
 
 package com.hp.autonomy.frontend.testing.matchers;
 
-import com.autonomy.aci.client.transport.AciParameter;
-import com.autonomy.aci.client.util.AciParameters;
+import com.autonomy.aci.client.transport.ActionParameter;
+import com.autonomy.aci.client.util.ActionParameters;
 import org.mockito.ArgumentMatcher;
 
 /**
- * Mockito matcher that checks that two {@link AciParameters} contain the same keys and values.
+ * Mockito matcher that checks that two {@link ActionParameters} contain the same keys and values.
  */
-public class MatchesAciParameters implements ArgumentMatcher<AciParameters> {
+public class MatchesAciParameters implements ArgumentMatcher<ActionParameters> {
     private final boolean onlyContains;
-    private final AciParameters parameters;
+    private final ActionParameters parameters;
 
     /**
      * Creates a new MatchesAciParameters that matches the given parameters
      * @param parameters The parameters to match
      */
-    public MatchesAciParameters(final AciParameters parameters) {
+    public MatchesAciParameters(final ActionParameters parameters) {
         this(parameters, true);
     }
 
@@ -38,21 +38,21 @@ public class MatchesAciParameters implements ArgumentMatcher<AciParameters> {
      * @param parameters The parameters to match
      * @param onlyContains true if the parameters must contain only the given parameters; false otherwise
      */
-    public MatchesAciParameters(final AciParameters parameters, final boolean onlyContains) {
+    public MatchesAciParameters(final ActionParameters parameters, final boolean onlyContains) {
         this.parameters = parameters;
         this.onlyContains = onlyContains;
     }
 
     @Override
-    public boolean matches(final AciParameters other) {
+    public boolean matches(final ActionParameters other) {
         if (onlyContains && parameters.size() != other.size()) {
             return false;
         }
 
-        for (final AciParameter parameter : parameters) {
+        for (final ActionParameter<?> parameter : parameters) {
             boolean found = false;
 
-            for (final AciParameter otherParameter : other) {
+            for (final ActionParameter<?> otherParameter : other) {
                 if (parameter.getName().equals(otherParameter.getName()) && parameter.getValue().equals(otherParameter.getValue())) {
                     found = true;
                     break;
@@ -72,7 +72,7 @@ public class MatchesAciParameters implements ArgumentMatcher<AciParameters> {
      * @param aciParameters The parameters to match
      * @return A MatchesAciParameters that will match objects that equal the given parameters
      */
-    public static MatchesAciParameters equalsAciParameters(final AciParameters aciParameters) {
+    public static MatchesAciParameters equalsAciParameters(final ActionParameters aciParameters) {
         return new MatchesAciParameters(aciParameters);
     }
 
@@ -81,7 +81,7 @@ public class MatchesAciParameters implements ArgumentMatcher<AciParameters> {
      * @param aciParameters The parameters to match
      * @return A MatchesAciParameters that will match objects that contain the given parameters
      */
-    public static MatchesAciParameters containsAciParameters(final AciParameters aciParameters) {
+    public static MatchesAciParameters containsAciParameters(final ActionParameters aciParameters) {
         return new MatchesAciParameters(aciParameters, false);
     }
 }
