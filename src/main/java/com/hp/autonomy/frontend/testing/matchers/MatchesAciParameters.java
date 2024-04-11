@@ -21,7 +21,7 @@ import org.mockito.ArgumentMatcher;
 /**
  * Mockito matcher that checks that two {@link AciParameters} contain the same keys and values.
  */
-public class MatchesAciParameters extends ArgumentMatcher<AciParameters> {
+public class MatchesAciParameters implements ArgumentMatcher<AciParameters> {
     private final boolean onlyContains;
     private final AciParameters parameters;
 
@@ -44,13 +44,7 @@ public class MatchesAciParameters extends ArgumentMatcher<AciParameters> {
     }
 
     @Override
-    public boolean matches(final Object object) {
-        if (!(object instanceof AciParameters)) {
-            return false;
-        }
-
-        final AciParameters other = (AciParameters) object;
-
+    public boolean matches(final AciParameters other) {
         if (onlyContains && parameters.size() != other.size()) {
             return false;
         }

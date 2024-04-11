@@ -14,15 +14,13 @@
 
 package com.hp.autonomy.frontend.testing.matchers;
 
-import org.hamcrest.Factory;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.mockito.ArgumentMatcher;
+import org.mockito.internal.hamcrest.HamcrestArgumentMatcher;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.core.AllOf.allOf;
 
@@ -33,10 +31,10 @@ import static org.hamcrest.core.AllOf.allOf;
  * cam help with compilation errors.
  * @param <T> The parameterized type of the set
  */
-public class SetContainingItems<T> extends ArgumentMatcher<Set<? super T>> {
+class SetContainingItems<T> extends BaseMatcher<Set<? super T>> {
 
     private final Set<? super T> set = new HashSet<>();
-    private Matcher<? super T> matcher;
+    private ArgumentMatcher<? super T> matcher;
 
     /**
      * Constructs a new SetContainingItems that matches a set containing the given items
@@ -51,7 +49,7 @@ public class SetContainingItems<T> extends ArgumentMatcher<Set<? super T>> {
      * Constructs a new SetContainingItems that matches a set where all the items match a given matcher
      * @param matcher The matcher that must match all items in the set
      */
-    public SetContainingItems(final Matcher<? super T> matcher) {
+    private SetContainingItems(final ArgumentMatcher<? super T> matcher) {
         this.matcher = matcher;
     }
 
@@ -62,7 +60,6 @@ public class SetContainingItems<T> extends ArgumentMatcher<Set<? super T>> {
      * @return A SetContainingItems that matches a set containing the items
      */
     @SafeVarargs
-    @Factory
     public static <T> SetContainingItems<T> isSetWithItems(final T... items) {
         return new SetContainingItems<>(items);
     }
@@ -74,16 +71,15 @@ public class SetContainingItems<T> extends ArgumentMatcher<Set<? super T>> {
      * @return A SetContainingItems which will match a set where all the items must match all the given matchers
      */
     @SafeVarargs
-    @Factory
-    public static <T> Matcher<Set<T>> isSetWithItems(final Matcher<? super T>... matchers) {
-        final List<Matcher<? super Set<T>>> all = new ArrayList<>(matchers.length);
+    static <T> ArgumentMatcher<Set<T>> isSetWithItems(final ArgumentMatcher<T>... matchers) {
+        final Collection<Matcher<? super Set<T>>> all = new ArrayList<>(matchers.length);
 
-        for (final Matcher<? super T> elementMatcher : matchers) {
+        for (final ArgumentMatcher<T> elementMatcher : matchers) {
             // Doesn't forward to hasItem() method so compiler can sort out generics.
             all.add(new SetContainingItems<>(elementMatcher));
         }
 
-        return allOf(all);
+        return new HamcrestArgumentMatcher<>(allOf(all));
     }
 
     @Override
@@ -98,12 +94,17 @@ public class SetContainingItems<T> extends ArgumentMatcher<Set<? super T>> {
             return set.containsAll(itemAsSet);
         } else {
             for (final Object setItem : itemAsSet) {
-                if (matcher.matches(setItem)) {
+                if (matcher.matches((T) setItem)) {
                     return true;
                 }
             }
 
             return false;
         }
+    }
+
+    @Override
+    public void describeTo(final Description description) {
+        description.appendText("matches");
     }
 }
