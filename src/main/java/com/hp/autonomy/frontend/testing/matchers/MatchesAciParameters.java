@@ -48,6 +48,9 @@ public class MatchesAciParameters implements ArgumentMatcher<ActionParameters> {
         if (onlyContains && parameters.size() != other.size()) {
             return false;
         }
+        if (other == null) {
+            return false;
+        }
 
         for (final ActionParameter<?> parameter : parameters) {
             boolean found = false;

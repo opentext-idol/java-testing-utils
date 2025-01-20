@@ -14,15 +14,14 @@
 
 package com.hp.autonomy.frontend.testing.matchers;
 
-import com.autonomy.aci.client.transport.AciParameter;
+import com.autonomy.aci.client.transport.ActionParameter;
 import org.mockito.ArgumentMatcher;
 
 /**
  * Mockito Matcher for matching ACI parameters. It will match an ACI parameter with a given name (ignoring case) and a
  * given value.
  */
-public class IsAciParameter implements ArgumentMatcher<AciParameter> {
-
+public class IsAciParameter implements ArgumentMatcher<ActionParameter<?>> {
     private final String name;
     private final String value;
 
@@ -42,13 +41,16 @@ public class IsAciParameter implements ArgumentMatcher<AciParameter> {
      * @param value The value of the parameter
      * @return A new IsAciParameter with the given name and value
      */
-    public static IsAciParameter aciParameter(final String name, final String value) {
+    public static IsAciParameter actionParameter(final String name, final String value) {
         return new IsAciParameter(name, value);
     }
 
     @Override
-    public boolean matches(final AciParameter parameter) {
-        return name.equalsIgnoreCase(parameter.getName())
-                && value.equalsIgnoreCase(parameter.getValue());
+    public boolean matches(final ActionParameter other) {
+        if (!(other.getValue() instanceof String otherValue)) {
+            return false;
+        }
+        return name.equalsIgnoreCase(other.getName())
+                && value.equalsIgnoreCase(otherValue);
     }
 }
